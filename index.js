@@ -8,8 +8,8 @@ const port = 3050
 
 app.use(cors());
 app.use(express.json());
-console.log('MONGODB_URI:', process.env.MONGODB_URI);   
-mongoose.connect(process.env.MONGODB_URI)
+
+mongoose.connect("mongodb+srv://jyh10105:JzZoAOsA9VA5MSRD@cluster0.jmx3rgn.mongodb.net/camp?retryWrites=true&w=majority")
     .then(() => console.log('MongoDB Connected to database...'))
     .catch((e) => console.log('MongoDB error:', e))
 
