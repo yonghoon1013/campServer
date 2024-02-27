@@ -9,7 +9,7 @@ const port = 3050
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect("mongodb+srv://jyh10105:JzZoAOsA9VA5MSRD@cluster0.jmx3rgn.mongodb.net/camp?retryWrites=true&w=majority")
+mongoose.connect(process.env.MONGODB_URI)
     .then(() => console.log('MongoDB Connected to database...'))
     .catch((e) => console.log('MongoDB error:', e))
 
@@ -55,9 +55,10 @@ app.get('/idCheck', async (req, res) => {
 app.post('/sign', async (req, res) => {
     
     const qData = req.body;
+    console.log(qData);
     await Member.create(qData);
 
-    let data = await Member.find();
+    let data = await Member.findOne({id: qData.id , pw: qData.pw, key: qData.key});
     res.json(data);
 })
 
